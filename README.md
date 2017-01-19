@@ -1,4 +1,6 @@
 # Predix CLI
+The CLI is a command line utility meant to simplify interaction with the Predix Cloud. It is a wrapper over the CF CLI and provides commands combining multiple steps of interaction into a single command.
+This is a beta release of the CLI.
 
 ## Wiki
 https://github.com/PredixDev/predix-cli/wiki
