@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Installing cli-lib..."
+go get -u github.build.ge.com/adoption/cli-lib
+
+echo "Installing go-uaa-lib..."
+go get -u github.com/PredixDev/go-uaa-lib
+
+echo "Installing govendor..."
+go get -u github.com/kardianos/govendor

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e
+
+ROOT_DIR=$(cd "$(dirname $0)/.." && pwd)
+
+function testStatus {
+  if [ $? -eq 0 ]; then
+    echo -e "\nTest Suite: ALL PASSED!"
+  else
+    echo -e "\nTest Suite: FAILED!"
+  fi
+}
+
+if [ ! $(which ginkgo) ];then
+  echo -e "Installing ginkgo..."
+  go get github.com/onsi/gomega
+  go get github.com/onsi/ginkgo/ginkgo
+fi
+
+trap testStatus EXIT
+
+pushd "$ROOT_DIR" >/dev/null
+  echo -e "Formatting source code..."
+  go fmt ./cli/...
+
+  echo -e "Vetting for potential issues..."
+  # Disabling composites because of this error https://github.com/golang/go/issues/9171
+  go tool vet -composites=false ./cli
+  for file in $(find cli \( -name "*.go" -not -iname "*test.go" \))
+  do
+    go tool vet -all -composites=false -shadow=true $file
+  done
+
+  ginkgo -r -randomizeAllSpecs -randomizeSuites $@
+
+  echo -e "\nEnsure go test runs without errors..."
+  go test ./cli/...
+
+  echo -e "\nEnsure no build errors..."
+  bin/build
+popd >/dev/null

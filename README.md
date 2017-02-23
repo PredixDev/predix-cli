@@ -1,12 +1,14 @@
-# Predix CLI
-The CLI is a command line utility meant to simplify interaction with the Predix Cloud. It is a wrapper over the CF CLI and provides commands combining multiple steps of interaction into a single command.
-This is a beta release of the CLI.
+# predix-cli
 
-## Wiki
-https://github.com/PredixDev/predix-cli/wiki
+A command line tool to interact with the Predix platform
+
+## Features
+
+- Login to the Predix Basic or Predix Select environment
+- Bash autocompletion for the Cloud Foundry CLI commands, parameters and arguments
 
 ## Installation
-Download the latest release from https://github.com/PredixDev/predix-cli/releases
+Download the latest release from https://github.build.ge.com/adoption/predix-cli/releases
 
 ### Linux / Mac OS X
 - Extract the file 'predix-cli.tar.gz'
@@ -14,5 +16,6 @@ Download the latest release from https://github.com/PredixDev/predix-cli/release
 
 ### Windows
 - Extract the file 'predix-cli.tar.gz'
-- Copy predix.exe from bin/win64 in the extracted folder to somewhere on the PATH. Run `echo %PATH%` to see its value
+- Copy predix.exe in bin/win64 in the extracted folder to somewhere on the PATH
+- Make a symbolic short link spelled with px.exe pointing at predix.exe.  e.g. mklink path-to-cli\px.exe path-to-cli\predix.exe
 - Autocompletion is not supported on Windows

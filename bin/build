@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+ROOT_DIR=$(cd "$(dirname $0)/.." && pwd)
+
+function cleanup {
+  git checkout -- cli/global/app_constants.go
+}
+
+trap cleanup EXIT
+
+if [ ! $(which gox) ]; then
+  echo -e "Installing gox..."
+  go get github.com/mitchellh/gox
+fi
+
+pushd "$ROOT_DIR" >/dev/null
+  rm -rf out
+  mkdir out
+
+  VERSION=$(cat VERSION)
+
+  git checkout -- cli/global/app_constants.go
+  if [ "$(uname)" == "Darwin" ]; then
+      sed -i "" -e "s/BUILT_FROM_SOURCE/$VERSION/g" cli/global/app_constants.go
+  else
+      sed -i -e "s/BUILT_FROM_SOURCE/$VERSION/g" cli/global/app_constants.go
+  fi
+
+  gox -os darwin -arch amd64 --output=out/osx/predix .
+  gox -os linux -arch amd64 --output=out/linux64/predix .
+  gox -os windows -arch amd64 --output=out/win64/predix .
+
+  git checkout -- cli/global/app_constants.go
+popd >/dev/null

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+ROOT_DIR=$(cd "$(dirname $0)/.." && pwd)
+
+pushd "$ROOT_DIR" >/dev/null
+  LINT_SLOW=true bin/lint
+  bin/build
+
+  git checkout master
+  git merge develop --ff
+popd >/dev/null

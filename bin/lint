@@ -1,0 +1,41 @@
+#!/bin/bash
+
+ROOT_DIR=$(cd "$(dirname $0)/.." && pwd)
+
+if [ ! $(which gometalinter) ];then
+  echo -e "Installing gometalinter..."
+  go get -u github.com/alecthomas/gometalinter
+  gometalinter --install
+fi
+
+pushd "$ROOT_DIR" >/dev/null
+  gometalinter --disable-all \
+      --enable=golint \
+      --enable=goconst \
+      --enable=vet \
+      --enable=vetshadow \
+      --enable=gocyclo --cyclo-over=10 \
+      --enable=deadcode \
+      --enable=gosimple \
+      --enable=staticcheck \
+      --deadline=${LINT_DEADLINE:-"15s"} \
+      ./cli/... \
+    | awk -f bin/lint-files.awk \
+    | awk -f bin/lint-linters.awk \
+    | sort
+
+  if [ -n "$LINT_SLOW" ]; then
+      echo -e "Running slow linters..."
+      gometalinter --disable-all \
+          --enable=unconvert \
+          --enable=errcheck \
+          --enable=varcheck \
+          --enable=aligncheck \
+          --enable=ineffassign \
+          --deadline=${LINT_SLOW_DEADLINE:-"5m"} \
+          ./cli/... \
+        | awk -f bin/lint-files.awk \
+        | awk -f bin/lint-linters.awk \
+        | sort
+  fi
+popd >/dev/null
