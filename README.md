@@ -15,4 +15,5 @@ Download the latest release from https://github.com/PredixDev/predix-cli/release
 ### Windows
 - Extract the file 'predix-cli.tar.gz'
 - Copy predix.exe from bin/win64 in the extracted folder to somewhere on the PATH. Run `echo %PATH%` to see its value
+- Make a symbolic short link spelled with px.exe pointing at predix.exe. e.g. mklink path-to-cli\px.exe path-to-cli\predix.exe
 - Autocompletion is not supported on Windows
