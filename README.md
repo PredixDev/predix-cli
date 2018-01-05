@@ -22,7 +22,7 @@ On Windows
 
 Open a Command Window as Administrator (Right click 'Run as Administrator') and run the command below
 ```
-@powershell -Command "(new-object net.webclient).DownloadFile('https://raw.githubusercontent.com/PredixDev/local-setup/master/setup-windows.bat','%TEMP%\setup-windows.bat')" && "%TEMP%\setup-windows.bat /cf /predixcli"
+@powershell -Command "(new-object net.webclient).DownloadFile('https://raw.githubusercontent.com/PredixDev/local-setup/master/setup-windows.bat','%TEMP%/setup-windows.bat')" && %TEMP%/setup-windows.bat /cf /predixcli
 ```
 
 ## Manual Installation instructions
