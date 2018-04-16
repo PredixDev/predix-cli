@@ -37,7 +37,13 @@ The latest release is downloadable at https://github.com/PredixDev/predix-cli/re
 ### Windows
 - Extract the file 'predix-cli.tar.gz'
 - Copy predix.exe in bin/win64 in the extracted folder to somewhere on the PATH
-- Make a symbolic short link spelled with px.exe pointing at predix.exe. e.g. mklink path-to-cli\px.exe path-to-cli\predix.exe- Autocompletion is not supported on Windows
+- Make a symbolic short link spelled with px.exe pointing at predix.exe. e.g. mklink path-to-cli\px.exe path-to-cli\predix.exe- 
+- Autocompletion is supported in Git-Bash terminal window, which is installed when Git is installed.
+  - ensure a directory in c:\Program Files\Git\etc\bash_completion.d\predix is created
+  - copy the predix-cli\autocompletion\bash_autocomplete to c:\Program Files\Git\etc\bash_completion.d\predix\bash_autocomplete.sh
+    - notice the .sh extension is added on there
+  - in home directory ~\.bashrc add this text which sources the bash_autocomplete.sh file
+    - . /etc/bash_completion.d/predix/bash_autocomplete.sh
 
 [![Analytics](https://ga-beacon.appspot.com/UA-82773213-1/predixcli/readme?pixel)](https://github.com/PredixDev)
 
