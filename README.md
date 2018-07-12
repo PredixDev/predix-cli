@@ -4,7 +4,7 @@ A command line tool to interact with the Predix platform
 
 ## Features
 
-- Login to the various Predix PoP environments (US West, US East, Frankfurt, Japan, etc)
+- Login to the various Predix PoP environments (US West, US East, Frankfurt, etc)
 - Define your own PoPs for internal or custom clouds.  See [below](#define-custom-cloud-login-pop-endpoints)
 - Bash autocompletion for the Cloud Foundry CLI commands, parameters and arguments
 
