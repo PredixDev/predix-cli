@@ -45,7 +45,7 @@ The latest release is downloadable at https://github.com/PredixDev/predix-cli/re
   - in home directory ~\.bashrc add this text which sources the bash_autocomplete.sh file
     - . /etc/bash_completion.d/predix/bash_autocomplete.sh
 
-[![Analytics](https://ga-beacon.appspot.com/UA-82773213-1/predixcli/readme?pixel)](https://github.com/PredixDev)
+[![Analytics](https://predix-beacon.appspot.com/UA-82773213-1/predixcli/readme?pixel)](https://github.com/PredixDev)
 
 
 ### Define Custom Cloud Login PoP Endpoints
